@@ -1,4 +1,4 @@
-module github.com/luizhlelis/go-lang-https-self-signed
+module github.com/luizhlelis/go-lang-https-self-signed/server
 
 go 1.14
 
