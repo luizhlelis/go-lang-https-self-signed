@@ -16,8 +16,6 @@ func HandleHomeRoutes(router *mux.Router, scheme string) {
 func getHome(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("JobOpportunities endepoint hit")
 
-	redisJobs := redis.GetData("jobs")
-
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode("This message has been encrypted to get here")
