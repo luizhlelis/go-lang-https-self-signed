@@ -1,0 +1,11 @@
+bin/*
+*.crt
+*.key
+*.csr
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
