@@ -5,8 +5,9 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
-	"github.com/luizhlelis/go-lang-https-self-signed/src/controllers"
+	"github.com/luizhlelis/go-lang-https-self-signed/server/controllers"
 )
 
 func main() {
