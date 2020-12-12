@@ -1,0 +1,42 @@
+version: '3.4'
+services:
+  server:
+    container_name: https-server
+    image: golang:1.14.4-alpine
+    volumes:
+      - ./server:/server
+    working_dir: /server
+    command:
+      [
+        "chmod",
+        "-R",
+        "u+r+x",
+        "scripts",
+        "./scripts/generate-certificate.sh",
+        "go",
+        "run"
+      ]
+    ports:
+      - '8081:8081'
+  client:
+    container_name: https-client
+    image: alpine
+    volumes:
+      - ./client:/client
+    depends_on:
+      - server
+    working_dir: /client
+    command:
+      [
+        "chmod",
+        "u+r+x",
+        "*",
+        "chmod",
+        "u+r+x",
+        "scripts/*",
+        "./scripts/wait-for-it.sh",
+        "-t",
+        "60",
+        "./scripts/trust-server-certificate.sh",
+        "./scripts/get-server-home.sh",
+      ]
