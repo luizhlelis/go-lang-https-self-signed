@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.5'
 services:
   server:
     container_name: https-server
@@ -8,13 +8,11 @@ services:
     working_dir: /server
     command:
       [
-        "chmod",
-        "-R",
-        "u+r+x",
-        "scripts",
         "./scripts/generate-certificate.sh",
+        "--",
         "go",
-        "run"
+        "run",
+        "main.go"
       ]
     ports:
       - '8081:8081'
@@ -23,6 +21,7 @@ services:
     image: alpine
     volumes:
       - ./client:/client
+      - ./server/scripts/servercert.crt:/usr/local/share/ca-certificates/servercert.crt
     depends_on:
       - server
     working_dir: /client
