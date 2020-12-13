@@ -6,14 +6,7 @@ services:
     volumes:
       - ./server:/server
     working_dir: /server
-    command:
-      [
-        "./scripts/generate-certificate.sh",
-        "--",
-        "go",
-        "run",
-        "main.go"
-      ]
+    command: ash -c "./scripts/generate-certificate.sh && go run main.go"
     ports:
       - '8081:8081'
   client:
@@ -21,21 +14,8 @@ services:
     image: alpine
     volumes:
       - ./client:/client
-      - ./server/scripts/servercert.crt:/usr/local/share/ca-certificates/servercert.crt
+      - ./server/certificates:/certificates
     depends_on:
       - server
     working_dir: /client
-    command:
-      [
-        "chmod",
-        "u+r+x",
-        "*",
-        "chmod",
-        "u+r+x",
-        "scripts/*",
-        "./scripts/wait-for-it.sh",
-        "-t",
-        "60",
-        "./scripts/trust-server-certificate.sh",
-        "./scripts/get-server-home.sh",
-      ]
+    command: ash -c "./scripts/trust-server-certificate.sh && ./get-server-home.sh"
