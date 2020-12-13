@@ -14,7 +14,7 @@ func HandleHomeRoutes(router *mux.Router, scheme string) {
 }
 
 func getHome(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("JobOpportunities endepoint hit")
+	fmt.Println("Home page endepoint hit")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
