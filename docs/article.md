@@ -6,8 +6,6 @@ This article will be useful to you if you want to create a self signed server in
 
 Firstly let's remember some concepts. The Hypertext Transfer Protocol ([Http](https://tools.ietf.org/html/rfc2616)) specifies a standard track protocol for the internet community and has been in use since 1990. The problem with the use of only http is that the exchanged messages between server and client will not be encripted, so everyone who intercepts those messages will know exactly what that messages means and also can modify the data to masquerade as one of the peers involved. To avoid attacks like [man-in-the-middle](https://tools.ietf.org/html/rfc4949) and to provide private communication the Secure Sockets Layer ([SSL](https://tools.ietf.org/html/rfc6101)) was lauched and it was the pioneer in secure communications protocols, but it was succeeded later by the Transport Layer Security ([TLS](https://tools.ietf.org/html/rfc8446)). TLS is the channel-oriented security protocol currently in use on the internet and it consists in two components: handshake and record protocols.
 
-This document specifies an Internet standards track protocol for the Internet community, and requests discussion and suggestions for improvements
-
 ## Why self signed?
 
 ## Running the project
