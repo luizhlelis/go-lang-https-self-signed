@@ -9,3 +9,6 @@ bin/*
 *.dylib
 *.test
 *.out
+
+# macOS files
+.DS_Store
