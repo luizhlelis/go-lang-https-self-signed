@@ -1,12 +1,12 @@
 # Building a self signed certificate server in golang
 
-This article will be useful to you if you want to create a self signed server in `golang`. There are many ways to deal with certificates to build and run a https server, this article will aproach two of them: with openssl tool and using golang standard libraries.
+This article will be useful to you if you want to create a self signed server in `golang`. There are many ways to deal with certificates to build and run a https server, this article will approach two of them: with openssl tool and using golang standard libraries.
 
 ## Why https?
 
-Firstly let's remember some concepts. The Hypertext Transfer Protocol ([Http](https://tools.ietf.org/html/rfc2616)) specifies a standard track protocol for the internet community and has been in use since 1990. The problem with the use of only http is that the exchanged messages between server and client will not be encripted, so everyone who intercepts those messages will know exactly what that messages means and also can modify the data to masquerade as one of the peers involved. To avoid attacks like [man-in-the-middle](https://tools.ietf.org/html/rfc4949) and to provide private communication, the Secure Sockets Layer ([SSL](https://tools.ietf.org/html/rfc6101)) was first introduced by Netscape in 1994 being the pioneer in secure communications protocols, but it was succeeded later by the Transport Layer Security ([TLS](https://tools.ietf.org/html/rfc8446)). TLS is the channel-oriented security protocol currently in use on the internet and it's composed basically by two protocols: the handshake and the record protocol.
+Firstly let's remember some concepts. The Hypertext Transfer Protocol ([Http](https://tools.ietf.org/html/rfc2616)) specifies a standard track protocol for the internet community and has been in use since 1990. The problem with the use of only http is that the exchanged messages between server and client will not be encrypted, so everyone who intercepts those messages will know exactly what that messages means and also can modify the data to masquerade as one of the peers involved. To avoid attacks like [man-in-the-middle](https://tools.ietf.org/html/rfc4949) and to provide private communication, the Secure Sockets Layer ([SSL](https://tools.ietf.org/html/rfc6101)) was first introduced by Netscape in 1994 being the pioneer in secure communications protocols, but it was succeeded later by the Transport Layer Security ([TLS](https://tools.ietf.org/html/rfc8446)). TLS is the channel-oriented security protocol currently in use on the internet and it's composed basically by two protocols: the handshake and the record protocol.
 
-The TLS Handshake protocol is responsable to authenticates two end-points, besides that, it also negotiates cryptographic parameters and generates keying material. On the other hand, the record protocol uses the parameters established by the handshake protocol to protect traffic between the end-points.
+The TLS Handshake protocol is responsible to authenticates two end-points, besides that, it also negotiates cryptographic parameters and generates keying material. On the other hand, the record protocol uses the parameters established by the handshake protocol to protect traffic between the end-points.
 
 ## Why self signed?
 
@@ -47,7 +47,7 @@ tls-key="servercert.key"
 
 ## Client
 
-The client container has a volume where the server certificate was genereted: `./server/certificates:/certificates`. The reason is because the client needs to trust that certificate to make `https` calls and aply the `TLS` protocol with the two way handshake. That trust was made with the command `update-ca-certificates` when we run `trust-server-certificate.sh`, than we can call the `https` server normally, in the present example we use `curl` calls in the `get-server-home.sh` file.
+The client container has a volume where the server certificate was generated: `./server/certificates:/certificates`. The reason is because the client needs to trust that certificate to make `https` calls and apply the `TLS` protocol with the two way handshake. That trust was made with the command `update-ca-certificates` when we run `trust-server-certificate.sh`, than we can call the `https` server normally, in the present example we use `curl` calls in the `get-server-home.sh` file.
 
 ## Running only the server with a client running locally
 
