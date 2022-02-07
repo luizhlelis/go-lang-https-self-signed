@@ -100,15 +100,15 @@ As mentioned before, you need to trust the server certificate in your local trus
 
 If you call a server endpoint before trusting the server certificate, you'll get an error like the following in your browser:
 
-![certificate-diagram](./before-trust.png)
+![before-trust](./before-trust.png)
 
 after trusting the certificate locally, you'll get the response with a 200 Ok status code:
 
-![certificate-diagram](./after-trust.png)
+![after-trust](./after-trust.png)
 
 if you expand the certificate, you will see all the domains secured by the self-signed certificate:
 
-![certificate-diagram](./certificate-sans.png)
+![certificate-sans](./certificate-sans.png)
 
 that behavior is also shown in the server stdout, before trusting the certificate there is a handshake error, but after trusting it, the handshake is successful:
 
